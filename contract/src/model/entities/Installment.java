@@ -1,36 +1,39 @@
 package model.entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Installment {
 
-    private LocalDateTime dueDate;
-    private Integer amount;
+    private LocalDate dueDate;
+    private Double quota;
 
-    public Installment() {
-    }
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public Installment(LocalDateTime dueDate, Integer amount) {
+    public Installment(LocalDate dueDate, double quota) {
         this.dueDate = dueDate;
-        this.amount = amount;
+        this.quota = quota;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Double getQuota() {
+        return quota;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setQuota(Double quota) {
+        this.quota = quota;
+    }
+
+    @Override
+    public String toString(){
+        return dueDate.format(fmt) + " - " + String.format("%.2f%n", quota);
     }
 
 
